@@ -31,10 +31,10 @@
         }
         .container {
             display: flex;
-            align-items: flex-start;
+            justify-content: space-between;
             padding: 20px;
             background-color: #fff;
-            max-width: 1200px; /* Increased containers size */
+            max-width: 1200px;
             margin: 20px auto;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
@@ -45,13 +45,14 @@
             align-items: center;
             margin-right: 20px;
             text-align: center;
+            flex: 1 1 200px; 
         }
         .left-section p {
             margin: 5px 0;
         }
         .left-section img {
             margin-bottom: 15px;
-            cursor: pointer; /* Add cursor pointer for clickable effect */
+            cursor: pointer; 
         }
         .left-section p.name {
             font-size: 24px;
@@ -60,10 +61,12 @@
         .right-section {
             margin-left: auto;
             align-self: center;
+            flex: 2 1 300px; 
         }
         .right-section ul {
             list-style-type: none;
             padding: 0;
+            margin: 0;
         }
         .right-section li {
             margin: 5px 0;
@@ -90,6 +93,7 @@
         ul {
             margin-top: 5px;
             margin-bottom: 10px;
+            
         }
         ul li {
             margin-bottom: 5px;
@@ -159,6 +163,18 @@
         
         .modal-btn:hover {
             background-color: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column; /* Stack the items vertically on small screens */
+            }
+
+            .left-section,
+            .right-section {
+                flex: 1 1 100%; /* Full width on small screens */
+                margin: 10px 0; /* Add some margin for spacing */
+            }
         }
     </style>
 </head>

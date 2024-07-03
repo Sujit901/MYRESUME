@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="icons/resume.png" alt="Profile Picture" />
+    <title>Sujit Upadhyaya</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("./background/tech.jpg");
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+        .containers {
+            padding: 20px;
+            background-color: #fff;
+            max-width: 1200px;
+            margin: 20px auto;
+            box-shadow: 0 0 10px rgba(50, 45, 45, 0.1);
+            border-radius: 10px;
+        }
+        .contain {
+            padding: 20px;
+            background-color: #fff;
+            max-width: 1200px;
+            margin: 20px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .container {
+            display: flex;
+            align-items: flex-start;
+            padding: 20px;
+            background-color: #fff;
+            max-width: 1200px; /* Increased containers size */
+            margin: 20px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .left-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 20px;
+            text-align: center;
+        }
+        .left-section p {
+            margin: 5px 0;
+        }
+        .left-section img {
+            margin-bottom: 15px;
+            cursor: pointer; /* Add cursor pointer for clickable effect */
+        }
+        .left-section p.name {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .right-section {
+            margin-left: auto;
+            align-self: center;
+        }
+        .right-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .right-section li {
+            margin: 5px 0;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+        .right-section li img {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+        }
+        .right-section a {
+            color: #000000;
+            text-decoration: none;
+        }
+        h3 {
+            margin-top: 20px;
+            color: #333;
+        }
+        h3 b {
+            font-weight: normal;
+        }
+        ul {
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+        ul li {
+            margin-bottom: 5px;
+        }
+        p {
+            margin: 5px 0;
+        }
+        i {
+            font-style: italic;
+        }
+
+        /* Styles for the image overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+
+        /* Styles for the modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        .modal {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            position: relative; /* Ensure position for absolute close button */
+        }
+        
+        .modal-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+        
+        .modal-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="contain">
+        <div class="container">
+            <div class="left-section">
+                <div class="img-container" onclick="openImage()">
+                    <img src="image/1.jpg" alt="Profile Picture" height="100px">
+                </div>
+                <p class="name">Sujit Upadhyaya</p>
+            </div>
+            <div class="right-section">
+                <ul>
+                    <li><img src="icons/phone.png" alt="Phone Icon"><a href="tel:+977-9749352492">+977-9749352492</a></li>
+                    <li><img src="icons/email.png" alt="Email Icon"><a href="mailto:sharmasujit901@gmail.com?subject=Contact&body=Hello,">sharmasujit901@gmail.com</a></li>
+                    <li><img src="icons/linkedin.png" alt="LinkedIn Icon"><a href="https://www.linkedin.com/in/sujit-upadhyaya-56477021a/">LinkedIn</a></li>
+                    <li><img src="icons/github.png" alt="GitHub Icon"><a href="https://github.com/Sujit901">GitHub</a></li>
+                    <li><img src="icons/location.png" alt="Location Icon"><a href="https://www.google.com/maps/search/?api=1&query=Siyari-6,+Rupendehi,+Lumbini,+Nepal" target="_blank">Siyari-6, Rupendehi, Lumbini, Nepal</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="containers">
+            <img src="icons/summary.png" alt="Summary Icon" style="height: 50px; display: flex; margin-left: 20px;">
+            <h3><b><span style="font-size: 24px;">S</span>UMMARY</b></h3>
+            <p>Motivated entry-level Python Developer with hands-on experience in Django and Quality Assurance. Skilled
+                in creating web applications, performing manual testing, and familiar with Agile methodologies. A strong
+                problem-solver with a passion for delivering high-quality software, ready to contribute to a dynamic team.</p>
+        </div>
+
+        <div class="containers">
+            <img src="icons/education.png" alt="Education Icon" style="height: 50px; display: flex; margin-left: 20px;">
+            <h3><b><span style="font-size: 24px;">E</span>DUCATION</b></h3>
+            <ul>
+                <li><img src="icons/v.png" alt="V Icon" style="height: 30px;"> <b><a href="https://www.virinchicollege.edu.np" style="color: #000000; text-decoration: none;">Virinchi International College</a></b></li>
+                <ul>
+                    <li><i>BICT</i></li>
+                    <li><i>2019, September - 2024, August</i></li>
+                    <li>CGPA: 3.05</li>
+                </ul>    
+            </ul>
+        </div>
+
+        <div class="containers">
+            <img src="icons/training.png" alt="Training Icon" style="height: 50px; display: flex; margin-left: 20px;">
+            <h3><b><span style="font-size: 24px;">T</span>RAINING</b></h3>
+            <ul>
+                <li><img src="icons/f.png" alt="f Icon" style="height: 30px;"> <b><a href="https://www.f1soft.com" style="color: #000000; text-decoration: none;">F1Soft</a></b></li>
+                <p><img src="icons/qa.png" alt="QA Icon" style="height: 30px;"> <i>Quality Assurance Intern</i></p>
+                <ul>
+                    <li><img src="icons/testing.png" alt="Testing Icon" style="height: 20px;"> Software testing methodologies</li>
+                    <li><img src="icons/test-case.png" alt="Test-case Icon" style="height: 20px;"> Test case design</li>
+                    <li><img src="icons/manual-testing.png" alt="Manual-testing Icon" style="height: 20px;"> Manual testing</li>
+                    <li><img src="icons/bug.png" alt="Bug Icon" style="height: 20px;"> Bug report</li>
+                </ul>   
+                <p><i>2023, May - 2023, August</i></p>
+                <p>Lalitpur, Nepal</p>
+            </ul>
+        </div>
+
+        <div class="containers">
+            <img src="icons/projects.png" alt="Projects Icon" style="height: 50px; display: flex; margin-left: 20px;">
+            <h3><b><span style="font-size: 24px;">P</span>ROJECTS</b></h3>
+            <ul>
+                <li><img src="icons/linux.png" alt="Linux Icon" style="height: 30px;"> <b><a href="https://github.com/Sujit901/LEARNLINUX" style="color: #000000; text-decoration: none;">Learn Linux by playing quizzes (Django)</a></b></li>
+                <p>User can learn different Linux distributions and play quiz game of the Linux distribution.</p>
+                <ul>
+                    <li>Tools & technologies used: Python (Django), HTML, CSS, JavaScript, dbSqlite3 and Visual Studio Code.</li>
+                </ul>
+            </ul>
+            <br>
+            <ul>
+                <li><img src="icons/irrigation.png" alt="Irrigation Icon" style="height: 30px;"> <b>Smart irrigation system</b></li>
+                <p>A IOT project which automates the irrigation for farmers.</p>
+                <ul>
+                    <li>Tools & technologies used: Arduino, Esp8266, soil moisture sensor, water pump, wires, matrix board, relay and C++.</li>
+                </ul>
+            </ul>
+            <br>
+            <ul>
+                <li><img src="icons/game.png" alt="Game Icon" style="height: 30px;"> <b>Buzz wire game</b></li>
+                <p>A game which is a IOT project built for fun.</p>
+                <ul>
+                    <li>Tools & technologies used: Arduino, Esp8266, wires, matrix board, relay, bulb, copper rod, buzzer and C++.</li>
+                </ul>
+            </ul>
+            <br>
+            <ul>
+                <li><img src="icons/service.png" alt="Service Icon" style="height: 30px;"> <b><a href="https://github.com/Sujit901/MAINTENANCEANDSERVICE" style="color: #000000; text-decoration: none;">Machine maintenance service in DJango</a></b></li>
+                <p>User can book available service of the machine maintenance for their home appliances.</p>
+                <ul>
+                    <li>Tools & technologies used: Python (Django), HTML, CSS, JavaScript, dbSqlite3 and Visual Studio Code.</li>
+                </ul>
+            </ul>
+        </div>
+
+        <div class="containers">
+            <img src="icons/tech.png" alt="Tech Icon" style="height: 50px; display: flex; margin-left: 20px;">
+            <h3><b><span style="font-size: 24px;">T</span>ECHNICAL <span style="font-size: 24px;">S</span>KILLS</b></h3>
+            <ul>
+                <li><img src="icons/python.png" alt="Python Icon" style="height: 20px;"> Python</li>
+                <li><img src="icons/django.png" alt="Djnago Icon" style="height: 20px;"> Django</li>
+                <li><img src="icons/html.png" alt="HTML Icon" style="height: 20px;"> HTML</li>
+                <li><img src="icons/css.png" alt="CSS Icon" style="height: 20px;"> CSS</li>
+                <li><img src="icons/js.png" alt="JS Icon" style="height: 20px;"> JS</li>
+                <li><img src="icons/arduino.png" alt="Arduino Icon" style="height: 20px;"> Arduino</li>
+                <li><img src="icons/qa.png" alt="QA Icon" style="height: 20px;"> Quality Assurance</li>
+            </ul>
+        </div>
+
+        <div class="containers">
+            <img src="icons/non.png" alt="Non Icon" style="height: 50px; display: flex; margin-left: 20px;">
+            <h3><b><span style="font-size: 24px;">N</span>ON-<span style="font-size: 24px;">T</span>ECHNICAL <span style="font-size: 24px;">S</span>KILLS</b></h3>
+            <ul>
+                <li><img src="icons/communication.png" alt="Communication Icon" style="height: 20px;"> Communication</li>
+                <li><img src="icons/time.png" alt="Time Icon" style="height: 20px;"> Time management</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Image overlay -->
+    <div class="overlay" onclick="closeImage()">
+        <img id="overlayImg" src="" alt="Profile Picture">
+    </div>
+
+     <!-- Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" onclick="event.stopPropagation();">
+            <div class="modal-content">
+                <h2>Welcome!</h2>
+                <p>You can save my resume by saving it as a PDF.</p>
+                <button class="modal-btn" onclick="closeModal()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openImage() {
+            var imgSrc = document.querySelector('.left-section img').src;
+            var overlay = document.querySelector('.overlay');
+            var overlayImg = document.getElementById('overlayImg');
+            
+            overlayImg.src = imgSrc;
+            overlay.style.display = 'flex'; // Display overlay
+        }
+
+        function closeImage() {
+            var overlay = document.querySelector('.overlay');
+            overlay.style.display = 'none'; // Hide overlay
+        }
+
+        // Function to show the modal
+        function openModal() {
+            var modal = document.getElementById('modalOverlay');
+            modal.style.display = 'flex'; // Display modal
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            var modal = document.getElementById('modalOverlay');
+            modal.style.display = 'none'; // Hide modal
+        }
+
+        // Show modal when the page loads
+        window.onload = function() {
+            openModal();
+        };
+
+        window.addEventListener('beforeunload', function(event) {
+            // Cancel the event
+            event.preventDefault();
+            // Chrome requires returnValue to be set
+            event.returnValue = '';
+
+            // Customize your confirmation message here
+            var confirmationMessage = 'Are you sure you want to leave?';
+
+            // Display the confirmation message
+            (event || window.event).returnValue = confirmationMessage; // For IE and Firefox
+            return confirmationMessage; // For other modern browsers
+        });
+    </script>
+</body>
+</html>

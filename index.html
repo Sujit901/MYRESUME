@@ -1,346 +1,596 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="icons/resume.png" alt="Profile Picture" />
+    <link rel="icon" type="image/png" href="icons/logo.png" alt="Logo" />
     <title>Sujit Upadhyaya</title>
+    <meta name="description" content="Sujit Upadhyaya is an entry-level Python Developer with hands-on experience in Django and Quality Assurance. Skilled in web application development and manual testing.">
+    <meta name="keywords" content="Sujit Upadhyaya, Python Developer, Quality Assurance, Django, Web Developer, QA">
+    <meta name="author" content="Sujit Upadhyaya">
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url("./background/tech.jpg");
-            background-size: cover;
+            background-color: #f8f9fa;
             margin: 0;
             padding: 0;
-        }
-        .containers {
-            padding: 20px;
-            background-color: #fff;
-            max-width: 1200px;
-            margin: 20px auto;
-            box-shadow: 0 0 10px rgba(50, 45, 45, 0.1);
-            border-radius: 10px;
-        }
-        .contain {
-            padding: 20px;
-            background-color: #fff;
-            max-width: 1200px;
-            margin: 20px auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-        .container {
-            display: flex;
-            align-items: flex-start;
-            padding: 20px;
-            background-color: #fff;
-            max-width: 1200px; /* Increased containers size */
-            margin: 20px auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-        .left-section {
             display: flex;
             flex-direction: column;
+            min-height: 100vh;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            margin-right: 20px;
-            text-align: center;
+            background: linear-gradient(135deg, #ffffff 50%, #e0e0e0 50%);
+            padding: 15px 20px;
+            border-bottom: 2px solid #e0e0e0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            position: relative;
         }
-        .left-section p {
-            margin: 5px 0;
-        }
-        .left-section img {
-            margin-bottom: 15px;
-            cursor: pointer; /* Add cursor pointer for clickable effect */
-        }
-        .left-section p.name {
+        .navbar-brand {
             font-size: 24px;
             font-weight: bold;
+            text-decoration: none;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #000000;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.4s ease;
+            padding: 10px 15px;
+            border-radius: 8px;
         }
-        .right-section {
-            margin-left: auto;
-            align-self: center;
+        .navbar-brand::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 4px;
+            background-color: #007bff;
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+            transform-origin: bottom right;
         }
-        .right-section ul {
+        .navbar-brand:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        .navbar-brand:hover {
+            color: #007bff;
+            text-shadow: 0 0 10px rgb(0, 123, 255);
+        }
+        .navbar-nav {
             list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .nav-item {
+            margin-left: 20px;
+        }
+        .nav-link {
+            color: #000000;
+            text-decoration: none;
+            font-size: 14px;
+            margin-right: 15px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: color 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+        }
+        .nav-link:last-child {
+            margin-right: 0;
+        }
+        .nav-link:hover {
+            color: #ffffff;
+            background-color: #1727fb;
+            transform: translateY(-2px);
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            margin-left: auto;
+        }
+        .hamburger div {
+            width: 30px;
+            height: 3px;
+            background-color: #000;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        .side-nav {
+            display: none;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background: linear-gradient(135deg, #ffffff 50%, #e0e0e0 50%);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+        .side-nav.active {
+            transform: translateX(0);
+        }
+        .side-nav .nav-item {
+            margin: 0;
+        }
+        .side-nav .nav-link {
+            padding: 15px;
+            font-size: 14px;
+            display: block;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .side-nav .nav-link:last-child {
+            border-bottom: none;
+        }
+        .side-nav .nav-link:hover {
+            background-color: #1727fb;
+            color: #ffffff;
+        }
+        .sidenavbar-nav {
+            list-style-type: none;
+            /* margin-top: 30%; */
             padding: 0;
         }
-        .right-section li {
-            margin: 5px 0;
-            font-size: 16px;
+        .close-btn {
+            width: 40px; /* Adjust size as needed */
+            height: 40px; /* Adjust size as needed */
+            font-size: 24px;
+            cursor: pointer;
+            background: #e0e0e0;
+            border: none;
+            color: #000000;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border-radius: 50%; /* Makes it a perfect circle */
             display: flex;
             align-items: center;
+            justify-content: center;
         }
-        .right-section li img {
-            margin-right: 10px;
+        .slider {
+            position: relative;
+            max-width: 100%;
+            height: 500px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.8s ease-in-out;
+            height: 100%;
+        }
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            height: 100%;
+        }
+        .slide img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            border-radius: 3px;
+            user-select: none;
+            background-color: rgba(0,0,0,0.5);
+            transition: background-color 0.3s ease;
+            z-index: 2;
+        }
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+        .prev {
+            left: 10px;
+        }
+        .next {
+            right: 10px;
+        }
+        .skills {
+            padding: 20px;
+            text-align: center;
+        }
+        .skills h2 {
+            font-size: 24px;
+            color: #000000;
+        }
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .skill-item {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: calc(33.333% - 40px);
+            box-sizing: border-box;
+            transition: transform 0.3s ease;
+        }
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+        .skill-item img {
+            max-width: 100%;
+            border-radius: 10px;
+            height: 50px;
+        }
+        .projects {
+            padding: 20px;
+            text-align: center;
+        }
+        .projects h2 {
+            font-size: 24px;
+            color: #000000;
+        }
+        .project-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .project-item {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: calc(33.333% - 40px);
+            box-sizing: border-box;
+            transition: transform 0.3s ease;
+        }
+        .project-item:hover {
+            transform: translateY(-5px);
+        }
+        .project-item img {
+            max-width: 100%;
+            border-radius: 10px;
+            height: 50px;
+        }
+        .hidden {
+            display: none;
+        }
+        .show-more-btn, .hide-btn {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .show-more-btn:hover, .hide-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        footer {
+            background: linear-gradient(135deg, #ffffff 50%, #e0e0e0 50%);
+            color: #333;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            margin-top: auto;
+        }
+        footer h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #000000;
+        }
+        footer p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        footer a {
+            color: #000000;
+            text-decoration: none;
+            margin: 0 8px;
+            display: inline-block;
+            font-size: 16px;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        footer img {
+            vertical-align: middle;
+            margin-right: 8px;
             width: 20px;
             height: 20px;
         }
-        .right-section a {
-            color: #000000;
-            text-decoration: none;
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
         }
-        h3 {
-            margin-top: 20px;
-            color: #333;
-        }
-        h3 b {
-            font-weight: normal;
-        }
-        ul {
-            margin-top: 5px;
-            margin-bottom: 10px;
-        }
-        ul li {
-            margin-bottom: 5px;
-        }
-        p {
+        .footer-links p {
             margin: 5px 0;
         }
-        i {
-            font-style: italic;
+        .footer-links a {
+            display: flex;
+            align-items: center;
         }
 
-        /* Styles for the image overlay */
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
+        .side-nav img {
+            display: block;
+            margin: 0 auto 20px;
+            height: 100px;
+            margin-top: 20px;
+            margin-left: 60px;
         }
-        .overlay img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 10px;
+        @media (max-width: 900px) {
+            .navbar-nav {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+            .navbar-nav.active {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .side-nav {
+                display: flex;
+            }
+            .navbar-nav .nav-item {
+                margin: 10px 0;
+            }
+            .skills h2, .projects h2 {
+                font-size: 20px;
+            }
+            .skill-item, .project-item {
+                width: calc(50% - 20px);
+            }
+            .slider {
+                height: 300px;
+            }
         }
-
-        /* Styles for the modal */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-        
-        .modal {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 90%;
-            max-height: 90%;
-            overflow-y: auto;
-            text-align: center;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            position: relative; /* Ensure position for absolute close button */
-        }
-        
-        .modal-btn {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 15px;
-        }
-        
-        .modal-btn:hover {
-            background-color: #0056b3;
+        @media (max-width: 480px) {
+            .navbar-brand {
+                font-size: 20px;
+            }
+            .skill-item, .project-item {
+                width: calc(100% - 20px);
+            }
+            .slider {
+                height: 200px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="contain">
-        <div class="container">
-            <div class="left-section">
-                <div class="img-container" onclick="openImage()">
-                    <img src="image/1.jpg" alt="Profile Picture" height="100px">
-                </div>
-                <p class="name">Sujit Upadhyaya</p>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand" style="display: flex; align-items: center;">
+            <img src="icons/logo.png" alt="Logo" style="height: 40px; margin-right: 10px;">
+            <span style="font-size: 28px;">S</span>UJIT <span style="font-size: 28px;  margin-left: 8px;">U</span>PADHYAYA
+        </a>
+        
+        <!-- <a href="index.html" class="navbar-brand"><span style="font-size: 28px;">S</span>UJIT <span style="font-size: 28px;">U</span>PADHYAYA</a> -->
+        <div class="hamburger" onclick="toggleMenu()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <ul class="navbar-nav">
+            <li class="nav-item"><a href="resume.html" class="nav-link"><span style="font-size: 18px;"><b>R</b></span><b>ESUME</b></a></li>
+            <li class="nav-item"><a href="project.html" class="nav-link"><span style="font-size: 18px;"><b>P</b></span><b>ROJECTS</b></a></li>
+            <li class="nav-item"><a href="certification.html" class="nav-link"><span style="font-size: 18px;"><b>C</b></span><b>ERTIFICATES</b></a></li>
+        </ul>
+    </nav>
+    <div class="side-nav">
+        <button class="close-btn" onclick="toggleMenu()">×</button>
+        <img src="icons/logo.png" alt="Logo">
+        <ul class="sidenavbar-nav">
+            <li class=".side-nav .nav-item"><a href="index.html" class="nav-link"><span style="font-size: 18px;"><b>H</b></span><b>OME</b></a></li>
+            <li class=".side-nav .nav-item"><a href="resume.html" class="nav-link"><span style="font-size: 18px;"><b>R</b></span><b>ESUME</b></a></li>
+            <li class=".side-nav .nav-item"><a href="project.html" class="nav-link"><span style="font-size: 18px;"><b>P</b></span><b>ROJECTS</b></a></li>
+            <li class=".side-nav .nav-item"><a href="certification.html" class="nav-link"><span style="font-size: 18px;"><b>C</b></span><b>ERTIFICATES</b></a></li>
+        </ul>
+    </div>
+    <div class="slider">
+        <div class="slides">
+            <div class="slide">
+                <img src="background/py1.jpg" alt="Slide 1">
             </div>
-            <div class="right-section">
-                <ul>
-                    <li><img src="icons/phone.png" alt="Phone Icon"><a href="tel:+977-9749352492">+977-9749352492</a></li>
-                    <li><img src="icons/email.png" alt="Email Icon"><a href="mailto:sharmasujit901@gmail.com?subject=Contact&body=Hello,">sharmasujit901@gmail.com</a></li>
-                    <li><img src="icons/linkedin.png" alt="LinkedIn Icon"><a href="https://www.linkedin.com/in/sujit-upadhyaya-56477021a/">LinkedIn</a></li>
-                    <li><img src="icons/github.png" alt="GitHub Icon"><a href="https://github.com/Sujit901">GitHub</a></li>
-                    <li><img src="icons/location.png" alt="Location Icon"><a href="https://www.google.com/maps/search/?api=1&query=Siyari-6,+Rupendehi,+Lumbini,+Nepal" target="_blank">Siyari-6, Rupendehi, Lumbini, Nepal</a></li>
-                </ul>
+            <div class="slide">
+                <img src="background/device.jpg" alt="Slide 2">
+            </div>
+            <div class="slide">
+                <img src="background/iot.jpg" alt="Slide 3">
+            </div>
+            <div class="slide">
+                <img src="background/py2.jpg" alt="Slide 4">
             </div>
         </div>
-
-        <div class="containers">
-            <img src="icons/summary.png" alt="Summary Icon" style="height: 50px; display: flex; margin-left: 20px;">
-            <h3><b><span style="font-size: 24px;">S</span>UMMARY</b></h3>
-            <p>Motivated entry-level Python Developer with hands-on experience in Django and Quality Assurance. Skilled
-                in creating web applications, performing manual testing, and familiar with Agile methodologies. A strong
-                problem-solver with a passion for delivering high-quality software, ready to contribute to a dynamic team.</p>
-        </div>
-
-        <div class="containers">
-            <img src="icons/education.png" alt="Education Icon" style="height: 50px; display: flex; margin-left: 20px;">
-            <h3><b><span style="font-size: 24px;">E</span>DUCATION</b></h3>
-            <ul>
-                <li><img src="icons/v.png" alt="V Icon" style="height: 30px;"> <b><a href="https://www.virinchicollege.edu.np" style="color: #000000; text-decoration: none;">Virinchi International College</a></b></li>
-                <ul>
-                    <li><i>BICT</i></li>
-                    <li><i>2019, September - 2024, August</i></li>
-                    <li>CGPA: 3.05</li>
-                </ul>    
-            </ul>
-        </div>
-
-        <div class="containers">
-            <img src="icons/training.png" alt="Training Icon" style="height: 50px; display: flex; margin-left: 20px;">
-            <h3><b><span style="font-size: 24px;">T</span>RAINING</b></h3>
-            <ul>
-                <li><img src="icons/f.png" alt="f Icon" style="height: 30px;"> <b><a href="https://www.f1soft.com" style="color: #000000; text-decoration: none;">F1Soft</a></b></li>
-                <p><img src="icons/qa.png" alt="QA Icon" style="height: 30px;"> <i>Quality Assurance Intern</i></p>
-                <ul>
-                    <li><img src="icons/testing.png" alt="Testing Icon" style="height: 20px;"> Software testing methodologies</li>
-                    <li><img src="icons/test-case.png" alt="Test-case Icon" style="height: 20px;"> Test case design</li>
-                    <li><img src="icons/manual-testing.png" alt="Manual-testing Icon" style="height: 20px;"> Manual testing</li>
-                    <li><img src="icons/bug.png" alt="Bug Icon" style="height: 20px;"> Bug report</li>
-                </ul>   
-                <p><i>2023, May - 2023, August</i></p>
-                <p>Lalitpur, Nepal</p>
-            </ul>
-        </div>
-
-        <div class="containers">
-            <img src="icons/projects.png" alt="Projects Icon" style="height: 50px; display: flex; margin-left: 20px;">
-            <h3><b><span style="font-size: 24px;">P</span>ROJECTS</b></h3>
-            <ul>
-                <li><img src="icons/linux.png" alt="Linux Icon" style="height: 30px;"> <b><a href="https://github.com/Sujit901/LEARNLINUX" style="color: #000000; text-decoration: none;">Learn Linux by playing quizzes (Django)</a></b></li>
+        <a class="prev" onclick="moveSlide(-1)">&#10094;</a>
+        <a class="next" onclick="moveSlide(1)">&#10095;</a>
+    </div>
+    <div class="projects">
+        <h2><span style="font-size: 28px;">P</span>ROJECTS</h2>
+        <div class="project-list">
+            <div class="project-item">
+                <img src="icons/linux.png" alt="Linux Icon">
+                <a href="https://github.com/Sujit901/LEARNLINUX" style="color: #000000; text-decoration: none;"><h3>Learn Linux by playing quizzes (Django)</h3></a>
                 <p>User can learn different Linux distributions and play quiz game of the Linux distribution.</p>
-                <ul>
-                    <li>Tools & technologies used: Python (Django), HTML, CSS, JavaScript, dbSqlite3 and Visual Studio Code.</li>
-                </ul>
-            </ul>
-            <br>
-            <ul>
-                <li><img src="icons/irrigation.png" alt="Irrigation Icon" style="height: 30px;"> <b>Smart irrigation system</b></li>
-                <p>A IOT project which automates the irrigation for farmers.</p>
-                <ul>
-                    <li>Tools & technologies used: Arduino, Esp8266, soil moisture sensor, water pump, wires, matrix board, relay and C++.</li>
-                </ul>
-            </ul>
-            <br>
-            <ul>
-                <li><img src="icons/game.png" alt="Game Icon" style="height: 30px;"> <b>Buzz wire game</b></li>
-                <p>A game which is a IOT project built for fun.</p>
-                <ul>
-                    <li>Tools & technologies used: Arduino, Esp8266, wires, matrix board, relay, bulb, copper rod, buzzer and C++.</li>
-                </ul>
-            </ul>
-            <br>
-            <ul>
-                <li><img src="icons/service.png" alt="Service Icon" style="height: 30px;"> <b><a href="https://github.com/Sujit901/MAINTENANCEANDSERVICE" style="color: #000000; text-decoration: none;">Machine maintenance service in DJango</a></b></li>
+                <p><b>Tools & technologies used:</b> Python (Django), HTML, CSS, JavaScript, dbSqlite3 and Visual Studio Code.</p>
+            </div>
+            <div class="project-item">
+                <img src="icons/irrigation.png" alt="Irrigation Icon">
+                <h3>Smart irrigation system</h3>
+                <p>An IOT project which automates the irrigation for farmers.</p>
+                <p><b>Tools & technologies used:</b> Arduino, Esp8266, soil moisture sensor, water pump, wires, matrix board, relay and C++.</p>
+            </div>
+            <div class="project-item">
+                <img src="icons/game.png" alt="Game Icon">
+                <h3>Buzz wire game</h3>
+                <p>A game which is an IOT project built for fun.</p>
+                <p><b>Tools & technologies used:</b> Arduino, Esp8266, wires, matrix board, relay, bulb, copper rod, buzzer and C++.</p>
+            </div>
+            <div class="project-item hidden">
+                <img src="icons/service.png" alt="Service Icon">
+                <a href="https://github.com/Sujit901/MAINTENANCEANDSERVICE" style="color: #000000; text-decoration: none;"><h3>Machine maintenance service in Django</h3></a>
                 <p>User can book available service of the machine maintenance for their home appliances.</p>
-                <ul>
-                    <li>Tools & technologies used: Python (Django), HTML, CSS, JavaScript, dbSqlite3 and Visual Studio Code.</li>
-                </ul>
-            </ul>
-        </div>
-
-        <div class="containers">
-            <img src="icons/tech.png" alt="Tech Icon" style="height: 50px; display: flex; margin-left: 20px;">
-            <h3><b><span style="font-size: 24px;">T</span>ECHNICAL <span style="font-size: 24px;">S</span>KILLS</b></h3>
-            <ul>
-                <li><img src="icons/python.png" alt="Python Icon" style="height: 20px;"> Python</li>
-                <li><img src="icons/django.png" alt="Djnago Icon" style="height: 20px;"> Django</li>
-                <li><img src="icons/html.png" alt="HTML Icon" style="height: 20px;"> HTML</li>
-                <li><img src="icons/css.png" alt="CSS Icon" style="height: 20px;"> CSS</li>
-                <li><img src="icons/js.png" alt="JS Icon" style="height: 20px;"> JS</li>
-                <li><img src="icons/arduino.png" alt="Arduino Icon" style="height: 20px;"> Arduino</li>
-                <li><img src="icons/qa.png" alt="QA Icon" style="height: 20px;"> Quality Assurance</li>
-            </ul>
-        </div>
-
-        <div class="containers">
-            <img src="icons/non.png" alt="Non Icon" style="height: 50px; display: flex; margin-left: 20px;">
-            <h3><b><span style="font-size: 24px;">N</span>ON-<span style="font-size: 24px;">T</span>ECHNICAL <span style="font-size: 24px;">S</span>KILLS</b></h3>
-            <ul>
-                <li><img src="icons/communication.png" alt="Communication Icon" style="height: 20px;"> Communication</li>
-                <li><img src="icons/time.png" alt="Time Icon" style="height: 20px;"> Time management</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Image overlay -->
-    <div class="overlay" onclick="closeImage()">
-        <img id="overlayImg" src="" alt="Profile Picture">
-    </div>
-
-     <!-- Modal -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal" onclick="event.stopPropagation();">
-            <div class="modal-content">
-                <h2>Welcome!</h2>
-                <p>You can save my resume by saving it as a PDF.</p>
-                <button class="modal-btn" onclick="closeModal()">OK</button>
+                <p><b>Tools & technologies used:</b> Python (Django), HTML, CSS, JavaScript, dbSqlite3 and Visual Studio Code.</p>
             </div>
         </div>
+        <button class="show-more-btn" onclick="showMoreProjects()">Show More Projects</button>
+        <button class="hide-btn hidden" onclick="hideProjects()">Show Less Projects</button>
     </div>
-
+    <div class="skills">
+        <h2><span style="font-size: 28px;">S</span>KILLS</h2>
+        <div class="skill-list">
+            <div class="skill-item">
+                <img src="icons/python.png" alt="Python Icon">
+                <h3>Python</h3>
+            </div>
+            <div class="skill-item">
+                <img src="icons/django.png" alt="Django Icon">
+                <h3>Django</h3>
+            </div>
+            <div class="skill-item">
+                <img src="icons/qa.png" alt="QA Icon">
+                <h3>Quality Assurance</h3>
+            </div>
+            <div class="skill-item hidden">
+                <img src="icons/arduino.png" alt="Arduino Icon">
+                <h3>Arduino</h3>
+            </div>
+            <div class="skill-item hidden">
+                <img src="icons/html.png" alt="HTML Icon">
+                <h3>HTML</h3>
+            </div>
+            <div class="skill-item hidden">
+                <img src="icons/css.png" alt="CSS Icon">
+                <h3>CSS</h3>
+            </div>
+            <div class="skill-item hidden">
+                <img src="icons/js.png" alt="JS Icon">
+                <h3>JS</h3>
+            </div>
+            <div class="skill-item hidden">
+                <img src="icons/communication.png" alt="Communication Icon">
+                <h3>Communication</h3>
+            </div>
+        </div>
+        <button class="show-more-btn" onclick="showMoreSkills()">Show More Skills</button>
+        <button class="hide-btn hidden" onclick="hideSkills()">Show less Skills</button>
+    </div>
+   
+    <footer>
+        <img src="icons/logo.png" alt="Logo" style="height: 100px; width: 100px;">
+        <h2><span style="font-size: 26px;">C</span>ONTACT <span style="font-size: 26px;">M</span>E</h2>
+        <div class="footer-links">
+            <p>
+                <a href="tel:+977-9749352492">
+                    <img src="icons/phone.png" alt="Phone Icon"> <b>+977-9749352492</b>
+                </a>
+            </p>
+            <p>
+                <a href="mailto:sharmasujit901@gmail.com">
+                    <img src="icons/email.png" alt="Email Icon"> <b>sharmasujit901@gmail.com</b>
+                </a>
+            </p>
+            <p>
+                <a href="https://www.linkedin.com/in/sujit-upadhyaya-56477021a/">
+                    <img src="icons/linkedin.png" alt="LinkedIn Icon"> <b>LinkedIn</b>
+                </a>
+            </p>
+            <p>
+                <a href="https://github.com/Sujit901">
+                    <img src="icons/github.png" alt="GitHub Icon"> <b>GitHub</b>
+                </a>
+            </p>
+            <p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Siyari-6,+Rupendehi,+Lumbini,+Nepal" target="_blank">
+                    <img src="icons/location.png" alt="Location Icon"> <b>Siyari-6, Rupendehi, Lumbini, Nepal</b>
+                </a>
+            </p>
+        </div>
+        <p>Created by <b>Sujit Upadhyaya</b></p>
+        <p>&copy; Copyright 2024</p>
+    </footer>
     <script>
-        function openImage() {
-            var imgSrc = document.querySelector('.left-section img').src;
-            var overlay = document.querySelector('.overlay');
-            var overlayImg = document.getElementById('overlayImg');
-            
-            overlayImg.src = imgSrc;
-            overlay.style.display = 'flex'; // Display overlay
-        }
+         let currentSlide = 0;
 
-        function closeImage() {
-            var overlay = document.querySelector('.overlay');
-            overlay.style.display = 'none'; // Hide overlay
-        }
-
-        // Function to show the modal
-        function openModal() {
-            var modal = document.getElementById('modalOverlay');
-            modal.style.display = 'flex'; // Display modal
-        }
-
-        // Function to close the modal
-        function closeModal() {
-            var modal = document.getElementById('modalOverlay');
-            modal.style.display = 'none'; // Hide modal
-        }
-
-        // Show modal when the page loads
-        window.onload = function() {
-            openModal();
+        function showSlide(index) {
+            const slides = document.querySelector('.slides');
+            const totalSlides = slides.children.length;
+            currentSlide = (index + totalSlides) % totalSlides;
+            slides.style.transform = `translateX(${-currentSlide * 100}%)`;
         };
 
-        window.addEventListener('beforeunload', function(event) {
-            // Cancel the event
-            event.preventDefault();
-            // Chrome requires returnValue to be set
-            event.returnValue = '';
+        function moveSlide(step) {
+            showSlide(currentSlide + step);
+        };
 
-            // Customize your confirmation message here
-            var confirmationMessage = 'Are you sure you want to leave?';
+        setInterval(() => {
+            moveSlide(1);
+        }, 5000);
 
-            // Display the confirmation message
-            (event || window.event).returnValue = confirmationMessage; // For IE and Firefox
-            return confirmationMessage; // For other modern browsers
-        });
+        function showMoreProjects() {
+            const hiddenProjects = document.querySelectorAll('.project-item.hidden');
+            hiddenProjects.forEach((project) => {
+                project.classList.remove('hidden');
+            });
+            document.querySelector('.show-more-btn').classList.add('hidden');
+            document.querySelector('.hide-btn').classList.remove('hidden');
+        };
+
+        function hideProjects() {
+            const projectItems = document.querySelectorAll('.project-item');
+            projectItems.forEach((project, index) => {
+                if (index >= 3) {
+                    project.classList.add('hidden');
+                }
+            });
+            document.querySelector('.show-more-btn').classList.remove('hidden');
+            document.querySelector('.hide-btn').classList.add('hidden');
+        };
+
+        function showMoreSkills() {
+            const hiddenSkills = document.querySelectorAll('.skills .skill-item.hidden');
+            hiddenSkills.forEach(skill => {
+                skill.classList.remove('hidden');
+            });
+            document.querySelector('.skills .show-more-btn').classList.add('hidden');
+            document.querySelector('.skills .hide-btn').classList.remove('hidden');
+        };
+
+        function hideSkills() {
+            const allSkills = document.querySelectorAll('.skills .skill-item');
+            allSkills.forEach((skill, index) => {
+                if (index >= 3) {
+                    skill.classList.add('hidden');
+                }
+            });
+            document.querySelector('.skills .show-more-btn').classList.remove('hidden');
+            document.querySelector('.skills .hide-btn').classList.add('hidden');
+        };
+        function toggleMenu() {
+            const nav = document.querySelector('.side-nav');
+            nav.classList.toggle('active');
+        };
     </script>
 </body>
 </html>
